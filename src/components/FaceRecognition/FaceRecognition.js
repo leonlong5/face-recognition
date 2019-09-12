@@ -1,9 +1,9 @@
 import React from 'react';
 import './FaceRecognition.css'
 
-const FaceRecognition = ({ imageUrl, boxlist }) => {
+const FaceRecognition = ({ imageHeight, imageUrl, boxlist }) => {
     return (
-    <div className='central'>
+    <div className='central' style={{height: imageHeight}}>
         <div className='absolute mt2'>
             {imageUrl ? <img id='inputimage' src={imageUrl} alt='face' width="600px" height='auto' /> : null}
             {boxlist? boxlist.map((box, i) => {

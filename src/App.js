@@ -3,6 +3,7 @@ import Navigation from './components/Navigation/Navigation'
 import Logo from './components/Logo/Logo'
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import AgeGenderCultural from './components/AgeGenderCultural/AgeGenderCultural'
 import Particles from 'react-particles-js';
 import './App.css';
 import Clarifai from 'clarifai'
@@ -33,6 +34,19 @@ class App extends Component {
     }
   }
 
+  displayAgeGenderCultural(response) {
+    let faceData = response.outputs[0].data.regions[0].data.face;
+    console.log(faceData)
+    let agesList = faceData.age_appearance.concepts;
+    let genderList = faceData.gender_appearance.concepts;
+    let multiculturalList = faceData.multicultural_appearance.concepts;
+    this.setState({
+      agesList: agesList,
+      genderList: genderList,
+      multiculturalList: multiculturalList
+    })
+  }
+
   caculateFaceLocation(data){
     console.log(data)
     let boxList = data.outputs[0].data.regions.map((x)=>{
@@ -44,6 +58,7 @@ class App extends Component {
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height = Number(image.height);
+    this.setState({ width: width, height: height} )
     let res = boxList.map((obj) => {
       return this.caculateOffset(obj, width, height)
     })
@@ -79,6 +94,7 @@ class App extends Component {
     ).then(
       (response) =>{
         this.displayFaceBox(this.caculateFaceLocation(response))
+        this.displayAgeGenderCultural(response)
       },
       function(err) {
         throw new err(err)
@@ -92,12 +108,19 @@ class App extends Component {
 
           <Particles className='particles'
                   params={ParticlesOptions} />
-        <Navigation />
+        {/* <Navigation /> */}
         <Logo />
         <ImageLinkForm 
             onInputChange={this.onInputChange}
             onSubmit={this.onSubmit}/>
-        <FaceRecognition imageUrl={this.state.imageUrl} boxlist={this.state.boxlist}/>
+        <FaceRecognition 
+            imageHeight={this.state.height}
+            imageUrl={this.state.imageUrl} 
+            boxlist={this.state.boxlist}/>
+        <AgeGenderCultural 
+            agesList={this.state.agesList} 
+            genderList={this.state.genderList}
+            multiculturalList={this.state.multiculturalList}/>
       </div>
     );
   }
