@@ -28,8 +28,29 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-      imageUrl: ''
+      imageUrl: '',
+
     }
+  }
+
+  caculateFaceLocation(data){
+    let bounding_box = data.outputs[0].data.regions[0].region_info.bounding_box;
+    //bounding_box is the face four boundary based on percentage on the page,
+    //bounding_box = {top_row: 0.2964545, left_col: 0.26398003, bottom_row: 0.7327663, right_col: 0.7083304}
+    const image = document.getElementById('inputimage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    return {
+      leftCol: bounding_box.left_col * width,   //from left to right, width * percentage
+      topRow: bounding_box.top_row * height,   //from top to bottom, height * height
+      rightCol: width - (bounding_box.right_col * width), //rightCol is entire width - rightCol width
+      bottomRow: height - (bounding_box.bottom_row * height) //bottomRow is entire height - bottomRow height
+    }
+  }
+
+  displayFaceBox = (box) => {
+    console.log(box)
+    this.setState({ box: box} )
   }
 
   onInputChange = (e) => {
@@ -44,8 +65,8 @@ class App extends Component {
       Clarifai.DEMOGRAPHICS_MODEL,
       this.state.input
     ).then(
-      function(response) {
-        console.log(response)
+      (response) =>{
+        this.displayFaceBox(this.caculateFaceLocation(response))
       },
       function(err) {
         throw new err(err)
@@ -64,7 +85,7 @@ class App extends Component {
         <ImageLinkForm 
             onInputChange={this.onInputChange}
             onSubmit={this.onSubmit}/>
-        <FaceRecognition imageUrl={this.state.imageUrl}/>
+        <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box}/>
       </div>
     );
   }
