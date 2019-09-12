@@ -12,11 +12,11 @@ const AgeChart = ({ agesList}) => {
         options = {
             chart: {
                 type: 'column',
-                height: 400,
+                height: 500,
                 width: 1000
             },
             title: {
-                text: 'Age prediction'
+                text: 'AGE PREDICTION'
             },
             subtitle: {
                 text: 'Source: clarifai.com'
@@ -52,10 +52,7 @@ const AgeChart = ({ agesList}) => {
         }
     }
 
-    return (
-    <div>
-        {agesList? <HighchartsReact highcharts={Highcharts} options={options} />:null}
-    </div>)
+    return agesList? <HighchartsReact className="hightchart-container" highcharts={Highcharts} options={options} />:null
 }
 
 

@@ -4,8 +4,9 @@ const ImageLinkForm = ({ onInputChange, onSubmit }) => {
     return (
         <div>
             <p className='f3'>
-                {'This Magic Brain will detect faces in your pictures. Get it a try!'}
+                {'This Magic Brain will detect faces and analyzes demographicsin on your pictures. Get it a try!'}
             </p>
+            <p>https://clarifai.com/cms-assets/20180320222305/demographics-002.jpg</p>
             <div className='central'>
                 <div className='form central pa4 br3 shadow-5'>
                     <input 

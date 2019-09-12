@@ -2,15 +2,16 @@ import React from 'react';
 import './AgeGenderCultural.css';
 import AgeChart from './AgeChart';
 import Gender from './Gender';
+import Multicultural from './Multicultural'
 
-let options = null;
 
 const AgeGenderCultural = ({ agesList, genderList, multiculturalList }) => {
     
     return (
-    <div>
+    <div id='report-container'>
+        <Gender genderList={genderList} agesList={agesList} multiculturalList={multiculturalList}></Gender>
+        <Multicultural multiculturalList={multiculturalList}></Multicultural>
         <AgeChart agesList={agesList}></AgeChart>
-        <Gender genderList={genderList}></Gender>
     </div>)
 }
 
