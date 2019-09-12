@@ -1,15 +1,11 @@
 import React from 'react';
 
-const Rank = () => {
-    return (<div>
-        <div className='white f3'>
-            {'Leon, your rank is ...'}
-        </div>
-        <div className='white f1'>
-            {'Leon, your rank is ...'}
-        </div>
+const FaceRecognition = ({imageUrl}) => {
+    return (
+    <div className='central'>
+        <img src={imageUrl} alt='face' />
     </div>)
 }
 
 
-export default Rank;
+export default FaceRecognition;
