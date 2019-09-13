@@ -1,7 +1,7 @@
 
 
 .gender-container{
-    height: 400px;
+    min-height: 400px;
 
     display: flex;
     flex-wrap: wrap;
@@ -9,7 +9,7 @@
     align-items:center;
 
     color: white;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
     text-align: left;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif

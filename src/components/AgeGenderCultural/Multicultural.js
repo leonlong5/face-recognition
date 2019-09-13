@@ -18,8 +18,8 @@ const Multicultural = ({ multiculturalList}) => {
                 plotBorderWidth: null,
                 plotShadow: false,
                 type: 'pie',
-                width: 500,
-                height: 500
+                width: 400,
+                height: 400
             },
             title: {
                 text: 'MULTICULTURAL APPEARANCE'

@@ -3,10 +3,10 @@ import './ImageLinkForm.css'
 const ImageLinkForm = ({ onInputChange, onSubmit, onDemoClick }) => {
     return (
         <div>
-            <p className='f3'>
+            <p className='f5'>
                 {'This Magic Brain will detect faces and analyzes demographicsin on your pictures. Get it a try!'}
             </p>
-            <p className='f3'>
+            <p className='f5'>
                 {'You can try the demo below by clicking the images, you could also paste your own image URL into the input box below.'}
             </p>
             <div className='btn-container'>

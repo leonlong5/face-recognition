@@ -12,8 +12,8 @@ const AgeChart = ({ agesList}) => {
         options = {
             chart: {
                 type: 'column',
-                height: 500,
-                width: 1000
+                height: 400,
+                width: 800
             },
             title: {
                 text: 'AGE PREDICTION'
