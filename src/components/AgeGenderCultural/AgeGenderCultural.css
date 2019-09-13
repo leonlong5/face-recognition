@@ -1,15 +1,37 @@
 
 
 .gender-container{
-    width: 450px;
-    height: 300px;
-    display: inline-block;
+    height: 400px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items:center;
+
     color: white;
     font-size: 1.5em;
     font-weight: bold;
     text-align: left;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+.report-left, .report-right{
+    display: inline-block;
+}
 #report-container div:not(:first-child) {
     display: inline-block;
+}
+
+.report-right{
+    border-collapse: collapse;
+}
+.report-right thead{
+    border-bottom: 3px solid lightpin
+}
+.report-right th, td {
+    padding:5px;
+}
+.report-right tbody tr:hover {
+    background-color: lightblue;
+    cursor: pointer;
 }
