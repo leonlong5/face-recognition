@@ -26,7 +26,7 @@
     border-collapse: collapse;
 }
 .report-right thead{
-    border-bottom: 3px solid lightpin
+    border-bottom: 3px solid lightpink;
 }
 .report-right th, td {
     padding:5px;

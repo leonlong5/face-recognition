@@ -36,7 +36,7 @@ class App extends Component {
 
   displayAgeGenderCultural(response) {
     let faceData = response.outputs[0].data.regions[0].data.face;
-    console.log(faceData)
+    //console.log(faceData)
     let agesList = faceData.age_appearance.concepts;
     let genderList = faceData.gender_appearance.concepts;
     let multiculturalList = faceData.multicultural_appearance.concepts;
@@ -48,7 +48,7 @@ class App extends Component {
   }
 
   caculateFaceLocation(data){
-    console.log(data)
+    //console.log(data)
     let boxList = data.outputs[0].data.regions.map((x)=>{
       return x.region_info.bounding_box
     })
@@ -79,6 +79,33 @@ class App extends Component {
     this.setState({ boxlist: boxlist} )
   }
 
+  onDemoClick = (e) => {
+    const imgId = e.target.value;
+    let imgUrl = null;
+    switch (imgId) {
+      case "1":
+        imgUrl = 'https://clarifai.com/cms-assets/20180320222305/demographics-002.jpg'
+        break;
+      case '2':
+        imgUrl = 'https://clarifai.com/cms-assets/20180320222304/demographics-001.jpg'
+        break;
+      case '3':
+        imgUrl = 'https://clarifai.com/cms-assets/20180320222305/demographics-003.jpg'
+        break;
+      case '4':
+        imgUrl = 'https://clarifai.com/cms-assets/20180320222306/demographics-004.jpg'
+        break
+      default:
+        break;
+    }
+    this.setState({
+      imageUrl: imgUrl
+    }, ()=> {
+      this.renderReport();
+    })
+    
+  }
+
   onInputChange = (e) => {
     this.setState({
       input: e.target.value
@@ -86,11 +113,16 @@ class App extends Component {
   }
 
   onSubmit = () => {
-    this.setState({imageUrl: this.state.input})
+    this.setState({imageUrl: this.state.input}, () => {
+      this.renderReport();
+    })
+    
+  }
 
+  renderReport = () => {
     app.models.predict(
       Clarifai.DEMOGRAPHICS_MODEL,
-      this.state.input
+      this.state.imageUrl
     ).then(
       (response) =>{
         this.displayFaceBox(this.caculateFaceLocation(response))
@@ -112,7 +144,8 @@ class App extends Component {
         <Logo />
         <ImageLinkForm 
             onInputChange={this.onInputChange}
-            onSubmit={this.onSubmit}/>
+            onSubmit={this.onSubmit}
+            onDemoClick={this.onDemoClick}/>
         <FaceRecognition 
             imageHeight={this.state.height}
             imageUrl={this.state.imageUrl} 

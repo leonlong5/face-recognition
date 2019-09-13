@@ -1,12 +1,24 @@
 import React from 'react';
 import './ImageLinkForm.css'
-const ImageLinkForm = ({ onInputChange, onSubmit }) => {
+const ImageLinkForm = ({ onInputChange, onSubmit, onDemoClick }) => {
     return (
         <div>
             <p className='f3'>
                 {'This Magic Brain will detect faces and analyzes demographicsin on your pictures. Get it a try!'}
             </p>
-            <p>https://clarifai.com/cms-assets/20180320222305/demographics-002.jpg</p>
+            <p className='f3'>
+                {'You can try the demo below by clicking the images, you could also paste your own image URL into the input box below.'}
+            </p>
+            <div className='btn-container'>
+                <button className='demoBtn bg1' onClick={onDemoClick} value='1'>
+                </button>
+                <button className='demoBtn bg2' onClick={onDemoClick} value='2'>>
+                </button>
+                <button className='demoBtn bg3' onClick={onDemoClick} value='3'>
+                </button>
+                <button className='demoBtn bg4' onClick={onDemoClick} value='4'>
+                </button>
+            </div>
             <div className='central'>
                 <div className='form central pa4 br3 shadow-5'>
                     <input 
