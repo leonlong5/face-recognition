@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import Logo from './components/Logo/Logo'
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
-import AgeGenderCultural from './components/AgeGenderCultural/AgeGenderCultural'
+import AgeGenderCultural from './components/AgeGenderCultural/AgeGenderCultural';
+import Footer from './components/Footer/Footer';
 import Particles from 'react-particles-js';
 import './App.css';
 import Clarifai from 'clarifai'
@@ -137,23 +138,27 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-
+        <header>
           <Particles className='particles'
                   params={ParticlesOptions} />
-        {/* <Navigation /> */}
-        <Logo />
-        <ImageLinkForm 
-            onInputChange={this.onInputChange}
-            onSubmit={this.onSubmit}
-            onDemoClick={this.onDemoClick}/>
-        <FaceRecognition 
-            imageHeight={this.state.height}
-            imageUrl={this.state.imageUrl} 
-            boxlist={this.state.boxlist}/>
-        <AgeGenderCultural 
-            agesList={this.state.agesList} 
-            genderList={this.state.genderList}
-            multiculturalList={this.state.multiculturalList}/>
+          {/* <Navigation /> */}
+          <Logo />
+        </header>
+        <section class='main-container'>
+          <ImageLinkForm 
+              onInputChange={this.onInputChange}
+              onSubmit={this.onSubmit}
+              onDemoClick={this.onDemoClick}/>
+          <FaceRecognition 
+              imageHeight={this.state.height}
+              imageUrl={this.state.imageUrl} 
+              boxlist={this.state.boxlist}/>
+          <AgeGenderCultural 
+              agesList={this.state.agesList} 
+              genderList={this.state.genderList}
+              multiculturalList={this.state.multiculturalList}/>
+        </section>
+        <Footer></Footer>
       </div>
     );
   }
