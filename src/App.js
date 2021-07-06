@@ -31,7 +31,7 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
-
+      showPopup: false,
     }
   }
 
@@ -122,7 +122,7 @@ class App extends Component {
 
   renderReport = () => {
     app.models.predict(
-      Clarifai.DEMOGRAPHICS_MODEL,
+      'a403429f2ddf4b49b307e318f00e528b',
       this.state.imageUrl
     ).then(
       (response) =>{
